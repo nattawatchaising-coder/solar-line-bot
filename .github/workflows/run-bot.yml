@@ -3,7 +3,7 @@ name: Solar Bot Daily Report
 on:
   schedule:
 # ตั้งให้รันตอน 22:45 น. (เวลาไทย) เพื่อทดสอบแบบสดๆ
-    - cron: '45 15 * * *'
+    - cron: '55 15 * * *'
   workflow_dispatch: # ปุ่มนี้ทำให้เรากดรันเองตอนไหนก็ได้เพื่อทดสอบ
 
 jobs:
