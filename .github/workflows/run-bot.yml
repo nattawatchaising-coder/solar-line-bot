@@ -1,0 +1,25 @@
+name: Solar Bot Daily Report
+
+on:
+  schedule:
+    # ตั้งเวลารันอัตโนมัติ (ตอนนี้ตั้งไว้ที่ 18:00 น. เวลาไทย)
+    - cron: '0 11 * * *' 
+  workflow_dispatch: # ปุ่มนี้ทำให้เรากดรันเองตอนไหนก็ได้เพื่อทดสอบ
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ดึงไฟล์โค้ด
+        uses: actions/checkout@v3
+      - name: ติดตั้ง Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: ติดตั้งแพ็กเกจ (ใบสั่งของ)
+        run: pip install -r requirements.txt
+      - name: รันบอทและส่ง LINE!
+        env:
+          LINE_ACCESS_TOKEN: ${{ secrets.LINE_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+        run: python main.py
