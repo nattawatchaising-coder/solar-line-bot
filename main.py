@@ -19,7 +19,6 @@ def send_line_message(message_text):
         'Authorization': f'Bearer {LINE_ACCESS_TOKEN}'
     }
     data = {
-        "to": LINE_USER_ID,
         "messages": [{"type": "text", "text": message_text}]
     }
     response = requests.post(url, headers=headers, data=json.dumps(data))
